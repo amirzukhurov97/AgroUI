@@ -1,0 +1,125 @@
+﻿@page "/nameProduct"
+@using AgroDTO.RequestModel
+@using AgroDTO.RequestUpdateModel
+@using AgroDTO.ResponseModel
+@using System.Net.Http.Json
+
+<MudTabs Elevation="4" Rounded="false" Centered="true" Color="@Color.Primary">
+    <MudTabPanel Text="Наименование продукта">
+        <br />
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4 pt-4 border">
+                <EditForm Model="@productRequest" OnValidSubmit="AddProduct" FormName="WorkerForm">
+                    <DataAnnotationsValidator />
+                    <div class="mb-3 text-center flex-column">
+                        <h3>Добавление товара</h3>
+                    </div>
+                    <div class="mb-3">
+                        <label>Наименование товара*</label>
+                        <InputText @bind-Value="productRequest.nameProduct" class="form-control" />
+                        <ValidationMessage For="() => productRequest.nameProduct" />
+                    </div>
+                    <div class="mb-3 d-grid gap-2">
+                        <button type="submit" class="btn btn-outline-success">Сохранить</button>
+                    </div>
+                </EditForm>
+            </div>            
+            <div class="col-lg-4 offset-lg-4 pt-4 border">
+                <h4 class="mb-3 text-center flex-column">Список товаров</h4>
+                @if(_productResponses != null)
+                {
+                    <MudDataGrid T="NameProductResponse" Items="@_productResponses"  EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+                                 StartedEditingItem="@StartedEditingItem" CanceledEditingItem="@CanceledEditingItem" CommittedItemChanges="@CommittedItemChanges"
+                                 Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
+                        <Columns>                            
+                            <PropertyColumn Property="x => x.Id" Title="Номер" />
+                            <PropertyColumn Property="x => x.nameProduct" Title="Наименование товара" />                            
+                            <TemplateColumn Hidden="@(_isCellEditMode || _editTriggerRowClick)" CellClass="d-flex justify-end">
+                                <CellTemplate>
+                                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@context.Actions.StartEditingItemAsync" />
+                                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Delete" OnClick="@(async () => await Delete(context.Item.Id))" />
+                                </CellTemplate>
+                            </TemplateColumn>
+                        </Columns>                        
+                    </MudDataGrid>
+                }                  
+            </div>
+        </div>
+        
+    </MudTabPanel> 
+    <MudTabPanel Text="Наименование организации" />
+    <MudTabPanel Text="Имя покупателя" />
+</MudTabs>
+
+@code {
+    
+    private bool _readOnly;
+    private bool _isCellEditMode;
+    private List<string> _events = new();
+    private bool _editTriggerRowClick;
+    private IEnumerable<NameProductResponse> _productResponses;
+    // private IEnumerable<OrganizationResponse> _organizationResponses;
+    // private IEnumerable<CustomerResponse> _customerResponses;
+    private NameProductRequest productRequest = new NameProductRequest();
+    // bool success;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _productResponses = await _httpClient.GetFromJsonAsync<List<NameProductResponse>>("api/NameProduct/showNameAllProducts");
+            // _organizationResponses = await _httpClient.GetFromJsonAsync<List<OrganizationResponse>>("api/Organization/showAllOrganizations");
+            // _customerResponses = await _httpClient.GetFromJsonAsync<List<CustomerResponse>>("api/Customer/showAllCustomers");
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+
+    }
+    private async Task AddProduct()
+    {
+        try
+        {
+            var respone = await _httpClient.PostAsJsonAsync("api/NameProduct/postNameProduct", productRequest);
+            if (respone.IsSuccessStatusCode)
+            {
+                await _js.InvokeVoidAsync("alert", "Успешно добавлнно");
+                productRequest = new NameProductRequest();
+
+            }
+            else
+            {
+                await _js.InvokeVoidAsync("alert", "Ошибка добавлении");
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }        
+    }
+    protected async Task Delete(int id)
+    {        
+        await _httpClient.DeleteAsync($"api/NameProduct/showNameAllProducts?id={id}");
+        _productResponses = await _httpClient.GetFromJsonAsync<List<NameProductResponse>>("api/NameProduct/showNameAllProducts");
+    }
+    void StartedEditingItem(NameProductResponse item)
+    {
+        _events.Insert(0, $"Event = StartedEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+
+    void CanceledEditingItem(NameProductResponse item)
+    {
+        _events.Insert(0, $"Event = CanceledEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+    void CommittedItemChanges(NameProductResponse item)
+    {
+        var updateRequest = new NameProductUpdateRequest
+        {
+            Id = item.Id,
+            nameProduct = item.nameProduct             
+        };        
+        _httpClient.PutAsJsonAsync<NameProductUpdateRequest>("", updateRequest);
+        _events.Insert(0, $"Event = CanceledEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+}

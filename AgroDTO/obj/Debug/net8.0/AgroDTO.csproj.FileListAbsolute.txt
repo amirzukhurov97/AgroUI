@@ -1,0 +1,11 @@
+D:\Projects\AgroUI\AgroDTO\bin\Debug\net8.0\AgroDTO.deps.json
+D:\Projects\AgroUI\AgroDTO\bin\Debug\net8.0\AgroDTO.dll
+D:\Projects\AgroUI\AgroDTO\bin\Debug\net8.0\AgroDTO.pdb
+D:\Projects\AgroUI\AgroDTO\obj\Debug\net8.0\AgroDTO.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\AgroUI\AgroDTO\obj\Debug\net8.0\AgroDTO.AssemblyInfoInputs.cache
+D:\Projects\AgroUI\AgroDTO\obj\Debug\net8.0\AgroDTO.AssemblyInfo.cs
+D:\Projects\AgroUI\AgroDTO\obj\Debug\net8.0\AgroDTO.csproj.CoreCompileInputs.cache
+D:\Projects\AgroUI\AgroDTO\obj\Debug\net8.0\AgroDTO.dll
+D:\Projects\AgroUI\AgroDTO\obj\Debug\net8.0\refint\AgroDTO.dll
+D:\Projects\AgroUI\AgroDTO\obj\Debug\net8.0\AgroDTO.pdb
+D:\Projects\AgroUI\AgroDTO\obj\Debug\net8.0\ref\AgroDTO.dll

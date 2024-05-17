@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\obj\\Debug\\net8.0\\compressed\\iuq6o9xxqp.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\AgroUI.styles.css",
+      "PackagePath": "staticwebassets\\AgroUI.styles.css"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\Projects\\AgroUI\\AgroUI\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AgroUI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AgroUI.props",
+      "PackagePath": "build\\AgroUI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AgroUI.props",
+      "PackagePath": "buildMultiTargeting\\AgroUI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AgroUI.props",
+      "PackagePath": "buildTransitive\\AgroUI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
